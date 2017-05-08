@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>单词录入</h1>
+
+<form action="">
+    <label for="en">英文：</label> <input id="en" type="text"/>
+    <br/>
+    <br/>
+    <label for="ch">中文：</label> <input id="ch" type="text"/>
+    <br/>
+    <br/>
+    <input type="button" id="save" value="保存">
+</form>
+<hr/>
+<p>
+    <a href="test.html">开始测试</a>
+</p>
+</body>
+<script>
+    var wordsList=[];
+    var words=localStorage["wordsList"];
+    if(words){
+        wordsList=JSON.parse(words);
+    }
+
+    save.addEventListener("click",function() {
+        if (en.value == "" || ch.value == "") {
+            alert("请输入要保存的单词");
+            return;
+        }
+        var obj = {};
+        obj.en = en.value;
+        obj.ch = ch.value;
+
+        wordsList.push(obj);
+
+        localStorage["wordsList"] = JSON.stringify(wordsList);
+        en.value = "";
+        ch.value = "";
+    })
+
+
+
+
+
+</script>
+</html>

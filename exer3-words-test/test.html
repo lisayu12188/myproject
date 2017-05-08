@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>测试试卷</h1>
+<form id="list" action="">
+    <div class="box">
+
+    </div>
+
+    <a id="subBtn" href="result.html">提交答案</a>
+</form>
+
+
+</body>
+<script>
+    onload=function(){
+        var words=localStorage["wordsList"];
+        if(words){
+            words=JSON.parse(words);
+            console.log(words);
+            var html=""
+            for(var i=0;i<words.length;i++){
+                //console.log(words[i].en);
+               html+=`<label for="w${i+1}">${words[i].en}</label>
+                        <input id="w${i+1}" type="text"/>
+                        <br/>
+                        <br/>`
+
+            }
+            var box=document.querySelector("#list .box");
+            box.innerHTML=html;
+
+            subBtn.onclick=function(e){
+                var cw=0;
+                //e.preventDefault();
+                var inp=document.querySelectorAll("#list .box input");
+                for(var i=0;i<inp.length;i++){
+                   if(inp[i].value==words[i].ch){
+                       cw++;
+
+                   }
+                }
+                sessionStorage["cnum"]=cw;
+                sessionStorage["wordsNo"]=words.length;
+            }
+
+
+       }
+
+
+
+
+    }
+</script>
+</html>
